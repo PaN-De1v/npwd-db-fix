@@ -1,19 +1,14 @@
-export const CONNECTION_STRING = 'mysql_connection_string';
+export const CONNECTION_STRING = 'mysql_npwm';
 interface Map {
   [key: string]: string;
 }
 
 /**
- * parse the connection string from the format server=127.0.0.1;database=es_extended;userid=user;password=pass
+ * parse the connection string from the format "user: de1v|pass: MSFKgĐ&g|ip: react.atropol.eu:3306|db: mrdkajedna"
  * @param connectionString - mysql_connection_string value
  */
 export function parseSemiColonFormat(connectionString: string): Map {
-  const parts = connectionString
-    .replace(/(?:host(?:name)|ip|server|data\s?source|addr(?:ess)?)=/gi, 'host=')
-    .replace(/(?:user\s?(?:id|name)?|uid)=/gi, 'user=')
-    .replace(/(?:pwd|pass)=/gi, 'password=')
-    .replace(/(?:db)=/gi, 'database=')
-    .split(';');
+  const parts = connectionString.split('|');
 
   if (parts.length === 1) {
     throw new Error(
@@ -22,7 +17,7 @@ export function parseSemiColonFormat(connectionString: string): Map {
   }
 
   return parts.reduce<Record<string, string>>((connectionInfo, parameter) => {
-    const [key, value] = parameter.split('=');
+    const [key, value] = parameter.split(':').map((part) => part.trim());
     if (value) connectionInfo[key] = value;
     return connectionInfo;
   }, {});

@@ -1,9 +1,16 @@
 lockfileVersion: '6.0'
 
+settings:
+  autoInstallPeers: true
+  excludeLinksFromLockfile: false
+
 importers:
 
   .:
     devDependencies:
+      '@citizenfx/server':
+        specifier: 2.0.6576-1
+        version: 2.0.6576-1
       '@commitlint/cli':
         specifier: ^15.0.0
         version: 15.0.0
@@ -1806,6 +1813,10 @@ packages:
 
   /@citizenfx/server@2.0.6316-1:
     resolution: {integrity: sha512-djM+opelAVHyHELCcueYYDAUgsj/MU7XuM+gGdXGQP4332tCdY1Mi0W1NQpXEebNmQeasJfrWml1W/3RrQZZbQ==}
+    dev: true
+
+  /@citizenfx/server@2.0.6576-1:
+    resolution: {integrity: sha512-/w4s5EM2rToBm6k9HYboOY1jNf7QFdc1cFBSEZ2LN5k6J1WY9WM/Ir2NQ8FnITsqCP2qmvlK2d4+IIcctyCiGw==}
     dev: true
 
   /@cnakazawa/watch@1.0.4:
